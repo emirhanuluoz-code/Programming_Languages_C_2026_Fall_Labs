@@ -45,9 +45,11 @@ int main(void) {
 
 // Implement functions below
 void swap(int *x, int *y) {
-    // TODO: swap values using a temporary variable
+    int m = *x;
+    *x = *y;
+    *y = m;
 }
 
 void modify_value(int *x) {
-    // TODO: multiply value by 2
+    *x = *x * 2;
 }
