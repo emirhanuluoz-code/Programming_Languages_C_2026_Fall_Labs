@@ -20,6 +20,41 @@ int main(int argc, char *argv[]) {
     int line_count = 0;
 
     // BONUS: if a file name was given on the command line (argc > 1), use argv[1] instead.
+    if (argc > 1) {
+        filename = argv[1];
+    }
+
+    printf("writing lines to %s... \n", filename);
+    fp = fopen(filename, "w");
+
+    if (fp = NULL) {
+        perror(filename);
+        return EXIT_FAILURE;
+    }
+
+    fprintf(fp, "This is sentence 1");
+    fprintf(fp, "This is sentence 2");
+
+    if (fclose(fp) != 0) {
+        perror(filename);
+        return EXIT_FAILURE;
+    }
+
+    fp = fopen(filename, "r");
+    if (fp = NULL) {
+        perror(filename);
+        return EXIT_FAILURE;
+    }
+
+    printf("Reading text: \n");
+    while (fgets(line, sizeof line, fp) != NULL) {
+        printf("%s", line);
+        line_count++;
+    }
+    fclose(fp);
+
+    printf("Lines read: %d\n", line_count);
+    
 
     // TODO: 1. Print "Writing lines to <filename>..." and open the file for writing (mode "w")
     // TODO: 2. Check that fp is not NULL. If it is: perror(filename); return EXIT_FAILURE;
@@ -34,7 +69,6 @@ int main(int argc, char *argv[]) {
     // BONUS: printf("Lines read: %d\n", line_count);
 
     // Remove this line once you use these variables:
-    (void)argc; (void)argv; (void)fp; (void)filename; (void)line; (void)line_count;
 
     return EXIT_SUCCESS;
 }
